@@ -315,7 +315,9 @@ function main {
 	if [[ $test_run-$test_passed -eq 0 ]]; then
 		echo $(green "All tests passed")
 	else 
-		echo $(red "$test_run-$test_passed tests failed")
+		declare -i errors
+		errors=$test_run-$test_passed
+		echo $(red "$errors tests failed")
 	fi
 
 }
