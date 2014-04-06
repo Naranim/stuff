@@ -233,6 +233,14 @@ function make_testing {
 			echo "input: $input"
 			echo "output: $output"
 		fi
+
+		if [[ -z "$output" ]]; then
+			if [[ ! -z "$VERBOSE" ]]; then
+				echo "skipping $input_name, output not found"
+			fi
+			continue
+		fi
+
 		$RUN_COMMAND < $input > .tmp_out
 		ex_stat=$?
 		if [ ! ex_stat ]; then
