@@ -250,7 +250,7 @@ function make_testing {
 			fi
 		fi
 
-		echo -e " " $counter ".\t" $result "\t" $input_name
+		echo -e " $counter.\t" $result "\t" $input_name
 		if [[ ! -z $comment ]]; then
 			echo $comment
 		fi
@@ -311,6 +311,12 @@ function main {
 	points=$test_passed*100
 	points=$points/$test_run
 	echo "Points: $points"
+
+	if [[ $test_run-$test_passed -eq 0 ]]; then
+		echo $(green "All tests passed")
+	else 
+		echo $(red "$test_run-$test_passed tests failed")
+	fi
 
 }
 
